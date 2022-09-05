@@ -20,10 +20,10 @@ def pred():
 
     ## ARIMA for time series.
     # fit model
-    mod = sm.tsa.statespace.SARIMAX(df_sup,
-                                order=(1,1,1),
-                                seasonal_order= (1,1,0,12),
-                               enforce_invertibility=False)
+    #mod = sm.tsa.statespace.SARIMAX(df_sup,
+    #                            order=(1,1,1),
+     #                           seasonal_order= (1,1,0,12),
+     #                          enforce_invertibility=False)
 
     mod= load_model("model1.h5")
     model_fit = mod.fit()
