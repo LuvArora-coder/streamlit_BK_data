@@ -25,7 +25,7 @@ def pred():
      #                           seasonal_order= (1,1,0,12),
      #                          enforce_invertibility=False)
 
-    mod= load_model("model1.h5")
+    mod= load_model("streamlit_BK_data\model1.h5")
     model_fit = mod.fit()
 
     # pred_uc = model_fit.forecast(steps=20)
