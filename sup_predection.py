@@ -5,16 +5,16 @@ import statsmodels.api as sm
 def pred():
     col = st.columns(2)
     with col[0]:
-        st_date = st.date_input("Select Start Date",pd.to_datetime('2018-01-01'))
+        st_date = st.date_input("Select Start Date",pd.to_datetime('2022-05-01'))
     with col[1]:
-        ed_date = st.date_input("Select End Date",pd.to_datetime('2019-03-28'))
+        ed_date = st.date_input("Select End Date",pd.to_datetime('2022-05-28'))
 
-    data = pd.read_csv("Superstore_sales_Data.csv")
-    df_sup = data[['Order Date','Sales']]
-    df_sup['Order Date'] = pd.to_datetime(df_sup['Order Date'],format='%d/%m/%Y')
-    df_sup = df_sup.groupby('Order Date').sum({
-        'Sales': lambda price: price.sum()})
-    df_sup = df_sup['Sales'].resample('D').sum()
+    data = pd.read_csv("only_sales.csv")
+    df_sup = data[['date','sales']]
+    df_sup['date'] = pd.to_datetime(df_sup['date'],format='%Y/%m/%d')
+    df_sup = df_sup.groupby('date').sum({
+        'sales': lambda price: price.sum()})
+    df_sup = df_sup['sales'].resample('D').sum()
     # st.write(df_sup)
 
     ## ARIMA for time series.
