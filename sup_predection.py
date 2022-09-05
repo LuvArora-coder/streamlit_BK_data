@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import statsmodels.api as sm
+from keras.models import load_model
 
 def pred():
     col = st.columns(2)
@@ -19,10 +20,12 @@ def pred():
 
     ## ARIMA for time series.
     # fit model
-    mod = sm.tsa.statespace.SARIMAX(df_sup,
-                                order=(1,1,1),
-                                seasonal_order= (1,1,0,12),
-                                enforce_invertibility=False)
+    #mod = sm.tsa.statespace.SARIMAX(df_sup,
+    #                            order=(1,1,1),
+     #                           seasonal_order= (1,1,0,12),
+     #                           enforce_invertibility=False)
+
+    mod= load_model("model1.h5")
     model_fit = mod.fit()
 
     # pred_uc = model_fit.forecast(steps=20)
@@ -32,22 +35,5 @@ def pred():
     # st.line_chart(pred_ci)
     st.write("Predection form ", str(st_date), " to ", str(ed_date))
     st.line_chart(pred_uc_w.predicted_mean)
-    st.write("Predection for Upcoming 10 days for which Data is not present")
-    st.line_chart(model_fit.forecast(steps=10))
-    # col = st.columns(2)
-    # with col[0]:
-    #     sel_name = st.selectbox("Select Customer Name", data["Customer Name"].unique())
-    # with col[1]:
-    #     st.write("Bar Graph")
-    # def sale_tot(Customer_name):
-    #     df = data[data["Customer Name"] == Customer_name]
-    #     value = sum(df["Sales"])
-    #     return value
-
-    # def cat_list(Customer_name):
-    #     df = data[data["Customer Name"] == Customer_name]
-    #     value = list(df["Category"].unique())
-    #     return value
-
-    # st.write(sale_tot(sel_name))
-    # st.write(pd.DataFrame(cat_list(sel_name)))
+    st.write("Predection for Upcoming 14 days for which Data is not present")
+    st.line_chart(model_fit.forecast(steps=14))
