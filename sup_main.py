@@ -18,7 +18,7 @@ st.sidebar.info(f"""{onlyday} , {onlydate} {onlymonth} {onlyyear}""")
 with st.sidebar:
     sel = option_menu(
         menu_title="Main Menu",
-        options=["Analysis", "Predection", "Feedback"],
+        options=["Analysis", "Predection", "Feedback1"],
         icons=["tv", "gear", "gear"],
         menu_icon="cast",
         #default_index=0,
